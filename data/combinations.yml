@@ -15,12 +15,12 @@ images:
       - unstable
   - name: centos
     tags:
-      - latest
       - 7
+      - latest
   - name: oraclelinux
     tags:
-      - latest
       - 7
+      - latest
   - name: redhat
     tags:
       - latest
