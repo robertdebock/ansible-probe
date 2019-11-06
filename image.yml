@@ -1,0 +1,6 @@
+---
+- name: testing {{ role_name }}
+  include_tasks: tag.yml
+  loop: "{{ image.tags | default(['latest']) }}"
+  loop_control:
+    loop_var: tag

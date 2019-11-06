@@ -1,0 +1,38 @@
+#!/usr/bin/env ansible-playbook
+- hosts: localhost
+  gather_facts: no
+
+  vars:
+    # Where to save the results.
+    ansible_probe_output_directory: ~/output
+
+  tasks:
+    - name: load combinations.yml
+      include_vars:
+        file: combinations.yml
+
+    - name: set role_path and role_name
+      set_fact:
+        role_path: "{{ lookup('env', 'PWD') }}"
+        role_name: "{{ lookup('env', 'PWD') | basename | regex_replace('ansible-role-') }}"
+
+    - name: test if molecule is installed
+      command: molecule --version
+      changed_when: no
+
+    - name: run molecule lint
+      command: molecule lint
+      args:
+        chdir: "{{ role_path }}"
+      changed_when: no
+
+    - name: make output_directory
+      file:
+        path: "{{ ansible_probe_output_directory }}"
+        state: directory
+
+    - name: include image.yml
+      include_tasks: image.yml
+      loop: "{{ images }}"
+      loop_control:
+        loop_var: image

@@ -1,0 +1,37 @@
+---
+images:
+  - name: amazonlinux
+    tags:
+      - latest
+      - 1
+  - name: alpine
+    tags:
+      - latest
+      - edge
+  - name: archlinux
+  - name: debian
+    tags:
+      - latest
+      - stable
+      - unstable
+  - name: centos
+    tags:
+      - latest
+      - 7
+  - name: oraclelinux
+    tags:
+      - latest
+      - 7
+  - name: redhat
+    tags:
+      - latest
+  - name: fedora
+    tags:
+      - latest
+      - rawhide
+  - name: opensuse
+  - name: ubuntu
+    tags:
+      - latest
+      - rolling
+      - devel
