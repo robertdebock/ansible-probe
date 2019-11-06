@@ -12,7 +12,6 @@ images:
   - name: debian
     tags:
       - latest
-      - stable
       - unstable
   - name: centos
     tags:
