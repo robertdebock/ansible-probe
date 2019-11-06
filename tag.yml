@@ -1,19 +1,11 @@
 ---
 - name: see if {{ image.name }}:{{ tag }} is listed succesful
   lineinfile:
-    path: "{{ ansible_probe_output_directory }}/{{ role_name }}-successful.txt"
+    path: "{{ ansible_probe_output_directory }}/{{ role_name }}-done.txt"
     line: "image={{ image.name }} tag={{ tag }}"
     create: yes
   check_mode: yes
-  register: ansible_probe_successful
-
-- name: see if {{ image.name }}:{{ tag }} is listed unsuccesful
-  lineinfile:
-    path: "{{ ansible_probe_output_directory }}/{{ role_name }}-unsuccessful.txt"
-    line: "image={{ image.name }} tag={{ tag }}"
-    create: yes
-  check_mode: yes
-  register: ansible_probe_unsuccessful
+  register: ansible_probe_done
 
 - name: try molecule on image and tag
   block:
@@ -27,60 +19,36 @@
       register: ansible_probe_tag_run_molecule
       no_log: yes
     
-    - name: save results to {{ ansible_probe_output_directory }}/{{ role_name }}-successful.txt
-      lineinfile:
-        path: "{{ ansible_probe_output_directory }}/{{ role_name }}-successful.txt"
-        line: "image={{ image.name }} tag={{ tag }}"
-        create: yes
-
     - name: load galaxy version mapping
       include_vars:
         file: data/{{ image.name }}.yml
 
-    - name: write {{ ansible_probe_output_directory }}/{{ role_name}}-meta.yml
+    - name: write {{ ansible_probe_output_directory }}/{{ role_name }}-meta.yml
       lineinfile:
-        path: "{{ ansible_probe_output_directory }}/{{ role_name}}-meta.yml"
+        path: "{{ ansible_probe_output_directory }}/{{ role_name }}/{{ image.name }}-meta.yml"
         line: "{{ item }}"
-        create: yes
       loop:
-        - "  platforms:"
         - "    - name: {{ galaxy_platform }}"
         - "      version:"
         - "        - {{ galaxy_version }}"
 
-    # - name: write begin to {{ ansible_probe_output_directory }}/{{ role_name}}-meta.yml
-    #   lineinfile:
-    #     path: "{{ ansible_probe_output_directory }}/{{ role_name}}-meta.yml"
-    #     line: "  platforms:"
-    #     create: yes
-
-    # - name: save image to {{ ansible_probe_output_directory }}/{{ role_name}}-meta.yml
-    #   lineinfile:
-    #     path: "{{ ansible_probe_output_directory }}/{{ role_name}}-meta.yml"
-    #     line: "    - name: {{ image.name }}"
-    #     create: yes
-    # 
-    # - name: add a line to {{ ansible_probe_output_directory }}/{{ role_name}}-meta.yml
-    #   lineinfile:
-    #     path: "{{ ansible_probe_output_directory }}/{{ role_name}}-meta.yml"
-    #     line: "      versions:"
-
-    # - name: add tag to {{ ansible_probe_output_directory }}/{{ role_name}}-meta.yml
-    #   lineinfile:
-    #     path: "{{ ansible_probe_output_directory }}/{{ role_name}}-meta.yml"
-    #     line: "        - {{ tag }}"
-
   rescue:
-    - name: save results to {{ ansible_probe_output_directory }}/{{ role_name }}-unsuccessful.txt
+    - name: show a soothing message
+      debug:
+        msg:
+          - "Molecule testing failed for {{ image }}:{{ tag }}"
+          - "Proceeding with other tests."
+
+  always:
+    - name: save the results to {{ ansible_probe_output_directory }}/{{ role_name }}-done.txt
       lineinfile:
-        path: "{{ ansible_probe_output_directory }}/{{ role_name }}-unsuccessful.txt"
+        path: "{{ ansible_probe_output_directory }}/{{ role_name }}-done.txt"
         line: "image={{ image.name }} tag={{ tag }}"
         create: yes
 
-  always:
     - name: save job output to {{ ansible_probe_output_directory }}/{{ role_name }}-{{ image.name }}-{{ tag }}.txt
       copy:
         dest: "{{ ansible_probe_output_directory }}/{{ role_name }}-{{ image.name }}-{{ tag }}.txt"
         content: "{{ ansible_probe_tag_run_molecule.stdout }}"
 
-  when: ansible_probe_successful is changed and ansible_probe_unsuccessful is changed
+  when: ansible_probe_done is changed

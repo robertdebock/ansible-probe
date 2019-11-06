@@ -40,3 +40,8 @@
       loop: "{{ images }}"
       loop_control:
         loop_var: image
+
+    - name: assemble the separate meta files
+      assemble:
+        src: "{{ ansible_probe_output_directory }}/{{ role_name }}"
+        dest: "{{ ansible_probe_output_directory }}-{{ role_name }}-meta.yml"
