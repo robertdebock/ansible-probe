@@ -9,7 +9,7 @@
 
 - name: try molecule on image and tag
   block:
-    - name: run molecule for {{ image.name }}:{{ tag }}
+    - name: run molecule in {{ role_name }} for {{ image.name }}:{{ tag }}
       command: molecule test
       args:
         chdir: "{{ role_path }}"
@@ -33,11 +33,9 @@
         - "        - {{ galaxy_version }}"
 
   rescue:
-    - name: show a soothing message
+    - name: molecule testing failed for {{ image.name }}:{{ tag }}
       debug:
-        msg:
-          - "Molecule testing failed for {{ image }}:{{ tag }}"
-          - "Proceeding with other tests."
+        msg: proceeding
 
   always:
     - name: save the results to {{ ansible_probe_output_directory }}/{{ role_name }}-done.txt
