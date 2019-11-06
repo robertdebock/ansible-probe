@@ -1,15 +1,4 @@
 ---
-- name: create directory for fragments to assemble
-  file:
-    path: "{{ ansible_probe_output_directory }}/{{ role_name }}"
-    state: directory
-
-- name: write start in {{ ansible_probe_output_directory }}/{{ role_name }}-meta.yml
-  lineinfile:
-    path: "{{ ansible_probe_output_directory }}/{{ role_name }}/{{ image.name }}-meta.yml"
-    line: "  platforms:"
-    create: yes
-
 - name: testing {{ role_name }}
   include_tasks: tag.yml
   loop: "{{ image.tags | default(['latest']) }}"

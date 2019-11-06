@@ -35,6 +35,17 @@
         path: "{{ ansible_probe_output_directory }}"
         state: directory
 
+    - name: create directory for fragments to assemble
+      file:
+        path: "{{ ansible_probe_output_directory }}/{{ role_name }}"
+        state: directory
+    
+    - name: write start in {{ ansible_probe_output_directory }}/{{ role_name }}-meta.yml
+      lineinfile:
+        path: "{{ ansible_probe_output_directory }}/{{ role_name }}/aaa-meta.yml"
+        line: "  platforms:"
+        create: yes
+
     - name: include image.yml
       include_tasks: image.yml
       loop: "{{ images }}"
