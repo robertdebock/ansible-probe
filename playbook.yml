@@ -7,9 +7,13 @@
     ansible_probe_output_directory: ~/output
 
   tasks:
-    - name: load combinations.yml
+    - name: load data/combinations.yml
       include_vars:
-        file: combinations.yml
+        file: data/combinations.yml
+
+    - name: load data/image_galaxy_platform.yml
+      include_vars:
+        file: data/image_galaxy_platform.yml
 
     - name: set role_path and role_name
       set_fact:

@@ -33,6 +33,43 @@
         line: "image={{ image.name }} tag={{ tag }}"
         create: yes
 
+    - name: load galaxy version mapping
+      include_vars:
+        file: data/{{ image.name }}.yml
+
+    - name: write {{ ansible_probe_output_directory }}/{{ role_name}}-meta.yml
+      lineinfile:
+        path: "{{ ansible_probe_output_directory }}/{{ role_name}}-meta.yml"
+        line: "{{ item }}"
+        create: yes
+      loop:
+        - "  platforms:"
+        - "    - name: {{ galaxy_platform }}"
+        - "      version:"
+        - "        - {{ galaxy_version }}"
+
+    # - name: write begin to {{ ansible_probe_output_directory }}/{{ role_name}}-meta.yml
+    #   lineinfile:
+    #     path: "{{ ansible_probe_output_directory }}/{{ role_name}}-meta.yml"
+    #     line: "  platforms:"
+    #     create: yes
+
+    # - name: save image to {{ ansible_probe_output_directory }}/{{ role_name}}-meta.yml
+    #   lineinfile:
+    #     path: "{{ ansible_probe_output_directory }}/{{ role_name}}-meta.yml"
+    #     line: "    - name: {{ image.name }}"
+    #     create: yes
+    # 
+    # - name: add a line to {{ ansible_probe_output_directory }}/{{ role_name}}-meta.yml
+    #   lineinfile:
+    #     path: "{{ ansible_probe_output_directory }}/{{ role_name}}-meta.yml"
+    #     line: "      versions:"
+
+    # - name: add tag to {{ ansible_probe_output_directory }}/{{ role_name}}-meta.yml
+    #   lineinfile:
+    #     path: "{{ ansible_probe_output_directory }}/{{ role_name}}-meta.yml"
+    #     line: "        - {{ tag }}"
+
   rescue:
     - name: save results to {{ ansible_probe_output_directory }}/{{ role_name }}-unsuccessful.txt
       lineinfile:

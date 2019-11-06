@@ -1,7 +1,7 @@
 Ansible Probe
 =============
 
-Run molecule on many combinations to generate a list of working (and not working) combinations.
+Use molecule with many distributions to generate that `platforms` part in `meta/main.yml`.
 
 Usage
 -----
@@ -44,4 +44,22 @@ image=ubuntu tag=rolling
 image=ubuntu tag=devel
 ```
 
-The output of the job runs is saved in `~/output/{{ role-name }}-{{ image }}-{{ tag }}.txt`
+Output
+------
+
+There are a few interesting files:
+
+- {{ role_name }}-meta.yml - The part that can be used in `meta/main.yml`.
+- {{ role_name }}-{{ image.name }}-{{ tag }}.txt - The output of molecule runs.to try and how to map images to Ansible Galaxy platforms:
+
+- `data/combinations.yml` is a list of images and tags to try.
+- `data/{{ image.name }}.yml`
+
+Data
+----
+
+There are a few files that help to determine what to try and how to map images to Ansible Galaxy platforms:
+
+- `data/combinations.yml` is a list of images and tags to try.
+- `data/image_galaxy_platform.yml` is a list of images and their relation to Ansible Galaxy platforms.
+- `data/{{ image.name }}.yml` are files (per image name) to map container tags to Ansible Galaxy platform versions.

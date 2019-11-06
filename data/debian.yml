@@ -1,0 +1,6 @@
+---
+_galaxy_version:
+  latest: buster
+  unstable: sid
+
+galaxy_version: "{{ _galaxy_version[tag] }}"

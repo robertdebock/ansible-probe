@@ -1,0 +1,6 @@
+---
+_galaxy_version:
+  7: 7
+  latest: 8
+
+galaxy_version: "{{ _galaxy_version[tag] }}"
