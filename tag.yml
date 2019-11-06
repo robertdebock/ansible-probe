@@ -27,6 +27,7 @@
       lineinfile:
         path: "{{ ansible_probe_output_directory }}/{{ role_name }}/{{ image.name }}-meta.yml"
         line: "{{ item }}"
+        create: yes
       loop:
         - "    - name: {{ galaxy_platform }}"
         - "      version:"
