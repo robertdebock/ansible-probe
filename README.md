@@ -49,6 +49,7 @@ Output
 
 There are a few interesting files:
 
+- {{ role_name }}/* - Parts used to generate {{ role_name }}-meta.yml.
 - {{ role_name }}-meta.yml - The part that can be used in `meta/main.yml`.
 - {{ role_name }}-{{ image.name }}-{{ tag }}.txt - The output of molecule runs.to try and how to map images to Ansible Galaxy platforms:
 
