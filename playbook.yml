@@ -32,17 +32,13 @@
 
     - name: make output_directory
       file:
-        path: "{{ ansible_probe_output_directory }}"
+        path: "{{ ansible_probe_output_directory }}/{{ role_name }}/fragments"
         state: directory
+        recurse: yes
 
-    - name: create directory for fragments to assemble
-      file:
-        path: "{{ ansible_probe_output_directory }}/{{ role_name }}"
-        state: directory
-    
-    - name: write start in {{ ansible_probe_output_directory }}/{{ role_name }}-meta.yml
+    - name: write meta header aaa-meta.yml
       lineinfile:
-        path: "{{ ansible_probe_output_directory }}/{{ role_name }}/aaa-meta.yml"
+        path: "{{ ansible_probe_output_directory }}/{{ role_name }}/fragments/aaa-meta.yml"
         line: "  platforms:"
         create: yes
 
@@ -54,5 +50,5 @@
 
     - name: assemble the separate meta files
       assemble:
-        src: "{{ ansible_probe_output_directory }}/{{ role_name }}"
-        dest: "{{ ansible_probe_output_directory }}-{{ role_name }}-meta.yml"
+        src: "{{ ansible_probe_output_directory }}/{{ role_name }}/fragments"
+        dest: "{{ ansible_probe_output_directory }}/{{ role_name }}/meta.yml"

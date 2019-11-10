@@ -1,15 +1,15 @@
 ---
-- name: see if {{ image.name }}:{{ tag }} is listed succesful
+- name: see if {{ image.name }}:{{ tag }} is already done
   lineinfile:
-    path: "{{ ansible_probe_output_directory }}/{{ role_name }}-done.txt"
+    path: "{{ ansible_probe_output_directory }}/{{ role_name }}/done.txt"
     line: "image={{ image.name }} tag={{ tag }}"
     create: yes
   check_mode: yes
   register: ansible_probe_done
 
-- name: try molecule on image and tag
+- name: try molecule for {{ role_name }} with {{ image.name }}:{{ tag }}
   block:
-    - name: run molecule in {{ role_name }} for {{ image.name }}:{{ tag }}
+    - name: run molecule for {{ role_name }} with {{ image.name }}:{{ tag }}
       command: molecule test
       args:
         chdir: "{{ role_path }}"
@@ -18,14 +18,14 @@
         tag: "{{ tag }}"
       register: ansible_probe_tag_run_molecule
       no_log: yes
-    
+
     - name: load galaxy version mapping
       include_vars:
         file: data/{{ image.name }}.yml
 
-    - name: write {{ ansible_probe_output_directory }}/{{ role_name }}-meta.yml
+    - name: write {{ image.name }}-meta.yml
       lineinfile:
-        path: "{{ ansible_probe_output_directory }}/{{ role_name }}/{{ image.name }}-meta.yml"
+        path: "{{ ansible_probe_output_directory }}/{{ role_name }}/fragments/{{ image.name }}-meta.yml"
         line: "{{ item }}"
         create: yes
       loop:
@@ -34,20 +34,20 @@
         - "        - {{ galaxy_version }}"
 
   rescue:
-    - name: molecule testing failed for {{ image.name }}:{{ tag }}
+    - name: molecule testing failed for {{ role_name }} with {{ image.name }}:{{ tag }}
       debug:
         msg: proceeding
 
   always:
-    - name: save the results to {{ ansible_probe_output_directory }}/{{ role_name }}-done.txt
+    - name: save the results to {{ ansible_probe_output_directory }}/{{ role_name }}/done.txt
       lineinfile:
-        path: "{{ ansible_probe_output_directory }}/{{ role_name }}-done.txt"
+        path: "{{ ansible_probe_output_directory }}/{{ role_name }}/done.txt"
         line: "image={{ image.name }} tag={{ tag }}"
         create: yes
 
-    - name: save job output to {{ ansible_probe_output_directory }}/{{ role_name }}-{{ image.name }}-{{ tag }}.txt
+    - name: save job output to {{ role_name }}/{{ image.name }}/{{ tag }}.txt
       copy:
-        dest: "{{ ansible_probe_output_directory }}/{{ role_name }}-{{ image.name }}-{{ tag }}.txt"
+        dest: "{{ ansible_probe_output_directory }}/{{ role_name }}/{{ image.name }}-{{ tag }}.txt"
         content: "{{ ansible_probe_tag_run_molecule.stdout }}"
 
   when: ansible_probe_done is changed

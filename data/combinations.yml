@@ -4,33 +4,33 @@ images:
     tags:
       - latest
       - 1
-  - name: alpine
-    tags:
-      - latest
-      - edge
-  - name: archlinux
-  - name: debian
-    tags:
-      - latest
-      - unstable
-  - name: centos
-    tags:
-      - 7
-      - latest
-  - name: oraclelinux
-    tags:
-      - 7
-      - latest
-  - name: redhat
-    tags:
-      - latest
-  - name: fedora
-    tags:
-      - latest
-      - rawhide
-  - name: opensuse
-  - name: ubuntu
-    tags:
-      - latest
-      - rolling
-      - devel
+  # - name: alpine
+  #   tags:
+  #     - latest
+  #     - edge
+  # - name: archlinux
+  # - name: debian
+  #   tags:
+  #     - latest
+  #     - unstable
+  # - name: centos
+  #   tags:
+  #     - 7
+  #     - latest
+  # - name: oraclelinux
+  #   tags:
+  #     - 7
+  #     - latest
+  # - name: redhat
+  #   tags:
+  #     - latest
+  # - name: fedora
+  #   tags:
+  #     - latest
+  #     - rawhide
+  # - name: opensuse
+  # - name: ubuntu
+  #   tags:
+  #     - latest
+  #     - rolling
+  #     - devel
