@@ -9,18 +9,18 @@ images:
       - latest
       - edge
   - name: archlinux
-  - name: debian
-    tags:
-      - latest
-      - unstable
   - name: centos
     tags:
       - 7
       - latest
-  - name: oraclelinux
+  - name: debian
     tags:
-      - 7
       - latest
+      - unstable
+  # - name: oraclelinux
+  #   tags:
+  #     - 7
+  #     - latest
   - name: redhat
     tags:
       - latest
