@@ -8,6 +8,7 @@
   register: ansible_probe_done
 
 - name: try molecule for {{ role_name }} with {{ image.name }}:{{ tag }}
+  when: ansible_probe_done is changed
   block:
     - name: run molecule for {{ role_name }} with {{ image.name }}:{{ tag }}
       command: molecule test
@@ -49,5 +50,3 @@
       copy:
         dest: "{{ ansible_probe_output_directory }}/{{ role_name }}/{{ image.name }}-{{ tag }}.txt"
         content: "{{ ansible_probe_tag_run_molecule.stdout }}"
-
-  when: ansible_probe_done is changed
