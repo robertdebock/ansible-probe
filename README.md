@@ -28,10 +28,10 @@ images:
 $ cd /my/homedir/ansible-role-my_role
 ```
 
-3. Run `playbook.yml`
+3. Run `probe.yml`
 
 ```
-./playbook.yml
+./probe.yml
 ```
 
 4. The results are saved in `~/output/{{ role_name }}-(un)successful.txt`, for example:
