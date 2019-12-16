@@ -32,5 +32,3 @@ images:
   - name: ubuntu
     tags:
       - latest
-      - rolling
-      - devel
