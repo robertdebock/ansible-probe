@@ -1,5 +1,6 @@
 ---
 _galaxy_version:
   latest: bionic
+  xenial: xenial
 
 galaxy_version: "{{ _galaxy_version[tag] }}"
