@@ -2,8 +2,8 @@
 images:
   - name: amazonlinux
     tags:
-      - latest
       - 1
+      - latest
   - name: alpine
     tags:
       - latest
@@ -23,12 +23,15 @@ images:
   #     - latest
   - name: redhat
     tags:
+      - 7
       - latest
   - name: fedora
     tags:
+      - 30
       - latest
       - rawhide
   - name: opensuse
   - name: ubuntu
     tags:
+      - xenial
       - latest

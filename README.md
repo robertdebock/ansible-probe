@@ -1,12 +1,14 @@
 Ansible Probe
 =============
 
-Use molecule with many distributions to generate that `platforms` part in `meta/main.yml`.
+Use molecule with many distributions to generate the `platforms` part in `meta/main.yml`.
 
 Usage
 -----
 
 1. Edit `combinations.yml`
+
+This file lists all combinations that should be tried.
 
 An example of `combinations.yml`:
 
