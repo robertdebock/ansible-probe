@@ -1,6 +1,5 @@
 ---
 _galaxy_version:
   1: 2018.03
-  latest: Candidate
 
 galaxy_version: "{{ _galaxy_version[tag] }}"

@@ -50,3 +50,8 @@
       copy:
         dest: "{{ ansible_probe_output_directory }}/{{ role_name }}/{{ image.name }}-{{ tag }}.txt"
         content: "{{ ansible_probe_tag_run_molecule.stdout }}"
+
+    - name: save job error to {{ role_name }}/{{ image.name }}/{{ tag }}-stderr.txt
+      copy:
+        dest: "{{ ansible_probe_output_directory }}/{{ role_name }}/{{ image.name }}-{{ tag }}-stderr.txt"
+        content: "{{ ansible_probe_tag_run_molecule.stderr }}"
