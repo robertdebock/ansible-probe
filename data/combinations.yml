@@ -28,10 +28,11 @@ images:
   - name: fedora
     tags:
       - 30
+      - 31
       - latest
       - rawhide
   - name: opensuse
   - name: ubuntu
     tags:
-      - xenial
       - latest
+      - bionic
