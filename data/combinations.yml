@@ -27,7 +27,6 @@ images:
       - latest
   - name: fedora
     tags:
-      - 30
       - 31
       - latest
       - rawhide
