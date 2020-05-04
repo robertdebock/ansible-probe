@@ -33,5 +33,5 @@ images:
   # - name: opensuse
   - name: ubuntu
     tags:
-      - latest
       - 1804
+      - latest

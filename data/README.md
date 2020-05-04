@@ -25,5 +25,5 @@ _galaxy_version:
   latest: 8
 ```
 
-- `7: 7` is a one to one mapping; the Docker container tag (left) is similar to the Ansible Galaxy version.
+- `7: 7` is a one to one mapping; the Docker container tag (left) is similar to the Ansible Galaxy version. (right)
 - `latest: 8` maps the Docker container tag `latest` to the Ansible Galaxy version `8`.
