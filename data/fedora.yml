@@ -1,2 +1,7 @@
 ---
-galaxy_version: "all"
+_galaxy_version:
+  31: 31
+  latest: 32
+  rawhide: 33
+
+galaxy_version: "{{ _galaxy_version[tag] }}"
