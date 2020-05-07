@@ -52,3 +52,27 @@
       assemble:
         src: "{{ ansible_probe_output_directory }}/{{ role_name }}/fragments"
         dest: "{{ ansible_probe_output_directory }}/{{ role_name }}/meta.yml"
+
+    - name: load generated meta.yml
+      slurp:
+        src: "{{ ansible_probe_output_directory }}/{{ role_name }}/meta.yml"
+      register: generated_meta
+
+    - name: load role meta.yml
+      slurp:
+        src: "{{ role_path }}/meta/main.yml"
+      register: role_meta
+
+    - name: decode role_meta
+      set_fact:
+        role_meta_decoded: "{{ role_meta['content'] | b64decode | from_yaml }}"
+
+    - name: decode generated_meta
+      set_fact:
+        generated_meta_decoded: "{{ generated_meta['content'] | b64decode }}"
+
+    - name: write role meta.yml
+      template:
+        src: templates/meta.yml.j2
+        dest: "{{ role_path }}/meta/main.yml"
+        backup: yes

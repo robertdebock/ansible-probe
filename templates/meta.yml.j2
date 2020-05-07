@@ -1,0 +1,19 @@
+galaxy_info:
+  author: {{ role_meta_decoded.galaxy_info.author }}
+  role_name: {{ role_meta_decoded.galaxy_info.role_name }}
+  description: {{ role_meta_decoded.galaxy_info.description }}
+  license: {{ role_meta_decoded.galaxy_info.license }}
+  company: {{ role_meta_decoded.galaxy_info.company }}
+  min_ansible_version: {{ role_meta_decoded.galaxy_info.min_ansible_version }}
+
+{{ generated_meta_decoded }}
+  galaxy_tags:
+{% for item in role_meta_decoded.galaxy_info.galaxy_tags %}
+    - {{ item }}
+{% endfor %}
+
+dependencies: {% if role_meta_decoded.dependencies|length < 1%}[]{% else %}
+{% for item in role_meta_decoded.dependencies %}
+  - {{ item }}
+{% endfor %}
+{% endif %}
