@@ -1,7 +1,7 @@
 Ansible Probe
 =============
 
-Use molecule with many distributions to generate the `platforms` part in `meta/main.yml`.
+Use molecule with many distributions to update the `platforms` section in `meta/main.yml`.
 
 Usage
 -----
@@ -17,11 +17,11 @@ An example of `combinations.yml`:
 images:
   - name: opensuse
     # The list of `tags` is set to `['latest']` when not specified.
-  - name: ubuntu
+  - name: fedora
     tags:
+      - 31
       - latest
-      - rolling
-      - devel
+      - rawhide
 ```
 
 2. Go to the directory where your role lives:
@@ -45,6 +45,10 @@ image=ubuntu tag=latest
 image=ubuntu tag=rolling
 image=ubuntu tag=devel
 ```
+
+5. Verify meta.yml
+
+Open `meta/main.yml` and see that `platforms` has been updated with succesfully tested platforms.
 
 Output
 ------
