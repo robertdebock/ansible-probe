@@ -33,5 +33,7 @@ images:
   # - name: opensuse
   - name: ubuntu
     tags:
-      - 1804
       - latest
+      - bionic
+      - xenial
+      - trusty
