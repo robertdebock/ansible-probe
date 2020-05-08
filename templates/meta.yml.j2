@@ -12,7 +12,8 @@ galaxy_info:
     - {{ item }}
 {% endfor %}
 
-dependencies: {% if role_meta_decoded.dependencies|length < 1%}[]{% else %}
+dependencies:
+{% if role_meta_decoded.dependencies|length < 1%}[]{% else %}
 {% for item in role_meta_decoded.dependencies %}
   - {{ item }}
 {% endfor %}
