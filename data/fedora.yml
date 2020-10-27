@@ -1,7 +1,7 @@
 ---
 _galaxy_version:
-  31: 31
-  latest: 32
-  rawhide: 33
+  32: 32
+  latest: 33
+  rawhide: 34
 
 galaxy_version: "{{ _galaxy_version[tag] }}"
