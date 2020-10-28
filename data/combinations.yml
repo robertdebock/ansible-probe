@@ -26,7 +26,7 @@ images:
   #     - latest
   - name: fedora
     tags:
-      - 31
+      - 32
       - latest
   - name: opensuse
   - name: ubuntu
