@@ -33,5 +33,3 @@ images:
     tags:
       - latest
       - bionic
-      - xenial
-      - trusty

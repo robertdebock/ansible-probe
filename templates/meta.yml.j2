@@ -5,7 +5,7 @@ galaxy_info:
   description: {{ role_meta_decoded.galaxy_info.description }}
   license: {{ role_meta_decoded.galaxy_info.license }}
   company: {{ role_meta_decoded.galaxy_info.company }}
-  min_ansible_version: {{ role_meta_decoded.galaxy_info.min_ansible_version }}
+  min_ansible_version: "{{ role_meta_decoded.galaxy_info.min_ansible_version }}"
 
 {{ generated_meta_decoded }}
   galaxy_tags:

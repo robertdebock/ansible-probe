@@ -2,6 +2,5 @@
 _galaxy_version:
   latest: focal
   bionic: bionic
-  xenial: xenial
 
 galaxy_version: "{{ _galaxy_version[tag] }}"
