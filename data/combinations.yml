@@ -26,8 +26,9 @@ images:
   #     - latest
   - name: fedora
     tags:
-      - 32
+      - 33
       - latest
+      - rawhide
   - name: opensuse
   - name: ubuntu
     tags:
