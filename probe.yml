@@ -71,7 +71,7 @@
       set_fact:
         generated_meta_decoded: "{{ generated_meta['content'] | b64decode }}"
 
-    - name: write role meta.yml
-      template:
-        src: templates/meta.yml.j2
-        dest: "{{ role_path }}/meta/main.yml"
+    # - name: write role meta.yml
+    #   template:
+    #     src: templates/meta.yml.j2
+    #     dest: "{{ role_path }}/meta/main.yml"

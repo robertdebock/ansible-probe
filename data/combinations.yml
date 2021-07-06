@@ -1,21 +1,20 @@
 ---
 images:
-  - name: amazonlinux
-    tags:
-      - 1
-  - name: alpine
-    tags:
-      - latest
-      - edge
+  # - name: amazonlinux
+  #   tags:
+  #     - 1
+  # - name: alpine
+  #   tags:
+  #     - latest
+  #     - edge
   # - name: archlinux
-  - name: centos
-    tags:
-      - 7
-      - latest
-  - name: debian
+  - name: rockylinux
     tags:
       - latest
-      - bullseye
+  # - name: debian
+  #   tags:
+  #     - latest
+  #     - bullseye
   # - name: oraclelinux
   #   tags:
   #     - 7
@@ -24,13 +23,13 @@ images:
   #   tags:
   #     - 7
   #     - latest
-  - name: fedora
-    tags:
-      - 33
-      - latest
-      - rawhide
-  - name: opensuse
-  - name: ubuntu
-    tags:
-      - latest
-      - bionic
+  # - name: fedora
+  #   tags:
+  #     - 33
+  #     - latest
+  #     - rawhide
+  # - name: opensuse
+  # - name: ubuntu
+  #   tags:
+  #     - latest
+  #     - bionic

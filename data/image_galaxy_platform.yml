@@ -9,6 +9,7 @@ _galaxy_plaform:
   opensuse: OpenSUSE
   oraclelinux: EL
   redhat: EL
+  rockylinux: EL
   ubuntu: Ubuntu
 
 galaxy_platform: "{{ _galaxy_plaform[image.name] }}"
