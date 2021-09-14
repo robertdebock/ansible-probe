@@ -1,6 +1,6 @@
 ---
 _galaxy_version:
-  latest: buster
-  bullseye: bullseye
+  latest: bullseye
+  bookworm: bookworm
 
 galaxy_version: "{{ _galaxy_version[tag] }}"

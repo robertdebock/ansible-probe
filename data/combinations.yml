@@ -11,6 +11,10 @@ images:
   - name: rockylinux
     tags:
       - latest
+  - name: centos
+    tags:
+      - 7
+      - latest
   # - name: debian
   #   tags:
   #     - latest
